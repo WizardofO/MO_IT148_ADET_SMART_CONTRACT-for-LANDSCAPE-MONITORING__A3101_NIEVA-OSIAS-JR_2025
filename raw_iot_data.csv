@@ -1,0 +1,11 @@
+timestamp,device_id,data_type,data_value
+2025-03-04 20:41:46.466097,Device_4,Energy,22.5°C
+2025-03-04 21:41:46.466095,Device_5,Humidity,45%
+2025-03-04 22:41:46.466093,Device_3,Temperature,18.3 kWh
+2025-03-04 23:41:46.466090,Device_5,Humidity,
+2025-03-05 00:41:46.466089,Device_5,Humidity,23.1°C
+2025-03-05 01:41:46.466087,Device_2,Humidity,50%
+2025-03-05 02:41:46.466086,Device_3,Humidity,19.0 kWh
+2025-03-05 03:41:46.466084,Device_3,Temperature,24.0°C
+2025-03-05 04:41:46.466069,Device_3,Temperature,
+2025-03-05 05:41:46.466061,Device_5,Humidity,47%
