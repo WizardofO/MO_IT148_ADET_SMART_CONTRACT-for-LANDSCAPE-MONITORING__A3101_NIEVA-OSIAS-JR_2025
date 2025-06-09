@@ -1,13 +1,14 @@
+# ----------------------------------------- MO-IT148_ADET Smart Landscape Monitoring with Payment System_NIEVA OSIAS JR-----------------------------------------
 import pandas as pd                         # data handling and saving
 import numpy as np                          # random number generation
 from datetime import datetime, timedelta    # date time generation
 
-num_records = 1000  # Number of records
+num_records = 1000  # Number of records be generated
 
 # Updated categories
-vegetation_types = ["Native Grass", "Ornamental Shrubs", "Tropical Trees", "Ground Cover", "Succulents"]
-project_statuses = ["Schematics Phase", "Design Devt. Phase", "Contract Document Phase", "Construction Phase", "Maintenance Phase"]
-locations = {
+vegetation_types = ["Native Grass", "Ornamental Shrubs", "Tropical Trees", "Ground Cover", "Succulents"]    # Vegetation types commonly found in the Philippines
+project_statuses = ["Schematics Phase", "Design Devt. Phase", "Contract Document Phase", "Construction Phase", "Maintenance Phase"] # Project statuses commonly used in the Philippines
+locations = {                                               # Locations in the Philippines with their coordinates
     "Quezon City": (14.6760, 121.0437),
     "Makati": (14.5547, 121.0244),
     "Taguig": (14.5176, 121.0509),
@@ -50,10 +51,10 @@ locations = {
     "Legazpi": (13.1391, 123.7438),
     "Naga City": (13.6218, 123.1948)
 }
-
+                                                                            # Project types commonly used in the Philippines        
 project_types = ["Urban Park", "Rooftop Garden", "Public Plaza", "Residential Landscape", "Campus Landscape", "Commercial", "Institutional"]
-weather_conditions = ["Sunny", "Cloudy", "Rainy", "Stormy", "Windy"]
-payment_statuses = ["Paid", "Pending", "Overdue"]
+weather_conditions = ["Sunny", "Cloudy", "Rainy", "Stormy", "Windy"]        # Weather conditions commonly experienced in the Philippines
+payment_statuses = ["Paid", "Pending", "Overdue"]                           # Payment statuses commonly used in the Philippines
 
 # sample owners
 provided_names = [
@@ -105,33 +106,34 @@ for _ in range(num_records):
         "latitude": round(lat + np.random.uniform(-0.01, 0.01), 6),                 # Random latitude variation based on Philippine Coordinates
         "longitude": round(lon + np.random.uniform(-0.01, 0.01), 6),                # Random longitude variation based on Philippine Coordinates
         "elevation_meters": round(np.random.uniform(5, 2000), 1),                   # Random elevation in meters
-        "project_type": np.random.choice(project_types),
+        "project_type": np.random.choice(project_types),                            # Random project type from the list
         # Smart Monitoring of Landscape
-        "vegetation_type": np.random.choice(vegetation_types),
-        "density_of_vegetation": round(np.random.uniform(20.0, 95.0), 1),
-        "soil_moisture": round(np.random.uniform(20.0, 80.0), 2),
-        "temperature_c": round(np.random.uniform(24.0, 35.0), 1),
-        "humidity_percent": round(np.random.uniform(50.0, 95.0), 1),
-        "wind_speed_kph": round(np.random.uniform(0.0, 20.0), 1),
-        "sunlight_hours": round(np.random.uniform(4.0, 10.0), 1),
-        "weather_condition": np.random.choice(weather_conditions),
-        # Project details
-        "project_status": np.random.choice(project_statuses),
-        "water_usage_liters": round(np.random.uniform(50.0, 300.0), 1),
-        "maintenance_required": np.random.choice([True, False], p=[0.3, 0.7]),
-        "landscape_architect_id": str(np.random.randint(1, 10001)).zfill(4),
-        "budget_allocated_php": np.random.randint(500_000, 5_000_000),
-        "contract_amount_php": np.random.randint(400_000, 6_000_000),
-        "environmental_impact_assessment_score": round(np.random.uniform(1.0, 10.0), 1),
-        # financial aspect of the project
-        "payment_status": np.random.choice(payment_statuses),
-        "owner": np.random.choice(provided_names),
-        "designer": np.random.choice(designer),
-        "deposit_php": deposit,
-        "withdraw_php": withdraw,
-        "balance_checker_php": balance
+        "vegetation_type": np.random.choice(vegetation_types),                      # Random vegetation type from the list
+        "density_of_vegetation": round(np.random.uniform(20.0, 95.0), 1),           # Random vegetation density percentage
+        "soil_moisture": round(np.random.uniform(20.0, 80.0), 2),                   # Random soil moisture percentage
+        "temperature_c": round(np.random.uniform(24.0, 35.0), 1),                   # Random temperature in Celsius
+        "humidity_percent": round(np.random.uniform(50.0, 95.0), 1),                # Random humidity percentage
+        "wind_speed_kph": round(np.random.uniform(0.0, 20.0), 1),                   # Random wind speed in kilometers per hour
+        "sunlight_hours": round(np.random.uniform(4.0, 10.0), 1),                   # Random sunlight hours per day
+        "weather_condition": np.random.choice(weather_conditions),                  # Random weather condition from the list
+        # Project details-Designers and Budget Allocation
+        "project_status": np.random.choice(project_statuses),                       # Random project status from the list
+        "water_usage_liters": round(np.random.uniform(50.0, 300.0), 1),             # Random water usage in liters
+        "maintenance_required": np.random.choice([True, False], p=[0.3, 0.7]),      # 30% chance of maintenance required
+        "landscape_architect_id": str(np.random.randint(1, 10001)).zfill(4),        # Random landscape architect ID (4 digits)           
+        "budget_allocated_php": np.random.randint(500_000, 5_000_000),              # Random budget allocated in PHP
+        "contract_amount_php": np.random.randint(400_000, 6_000_000),               # Random contract amount in PHP
+        "environmental_impact_assessment_score": round(np.random.uniform(1.0, 10.0), 1),    # Random environmental impact assessment score between 1 and 10
+        # ALl about financial aspect of the project
+        "payment_status": np.random.choice(payment_statuses),                       # Random payment status from the list
+        "owner": np.random.choice(provided_names),                                  # Random owner from the provided names  
+        "designer": np.random.choice(designer),                                     # Random designer from the list     
+        "deposit_php": deposit,                                                     # Deposit amount in PHP              
+        "withdraw_php": withdraw,                                                   # Withdraw amount in PHP
+        "balance_checker_php": balance                                              # Balance amount in PHP
     }
     data.append(project_record)
+    # INVETORY of DATA FIELDS 
     # TOTAL DATA INCLUDING TIMESTAMP =  28 Fields Records
     # LOCATION DATA = 6 Fields
     # SMART LANDSCAPE = 8 Fields
@@ -140,10 +142,10 @@ for _ in range(num_records):
     # TIMESTAMP = 1 Field
 
 # Save as DataFrame
-df = pd.DataFrame(data)
-df.to_csv("landscape_project_with_payment.csv", index=False)
-df.to_json("landscape_project_with_payment.json", orient="records")
+df = pd.DataFrame(data)                                                 # Convert list of dictionaries to DataFrame
+df.to_csv("landscape_project_with_payment.csv", index=False)            # Save DataFrame to CSV file without index
+df.to_json("landscape_project_with_payment.json", orient="records")     # Save DataFrame to JSON file with records orientation
 
 # Display sample
-print(df.head())
-print("Dataset saved as 'landscape_project_with_payment.csv' and '.json'")
+print(df.head())                                                                # Display first 5 records of the DataFrame
+print("Dataset saved as 'landscape_project_with_payment.csv' and '.json'")      # Print confirmation message

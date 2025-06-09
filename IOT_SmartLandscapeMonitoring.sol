@@ -33,44 +33,44 @@ contract SmartLandscapeMonitoring {         // Smart Landscape Monitoring Contra
 
     struct ProjectDetails {                 // Structure to hold Project Details
         string projectType;                 // Type of project (e.g. landscaping, irrigation, maintenance)
-        uint8 projectStatus; // e.g. 0 = planning, 1 = ongoing, 2 = completed
-        uint256 waterUsageLiters;
-        bool maintenanceRequired;
-        string landscapeArchitectId;
-        string owner;
-        string designer;
+        uint8 projectStatus;                // e.g. 0 = planning, 1 = ongoing, 2 = completed
+        uint256 waterUsageLiters;           // Water usage in liters
+        bool maintenanceRequired;           // Flag to indicate if maintenance is required
+        string landscapeArchitectId;        // ID of the landscape architect
+        string owner;                       // Owner of the project 
+        string designer;                    // Designer of the project
     }
 
     struct Project {                        // Structure to hold Project Information
-        uint256 timestamp;  
-        string projectId;
-        LocationInfo locationInfo;
-        EnvironmentData environmentData;
-        FinancialData financialData;
-        ProjectDetails projectDetails;
+        uint256 timestamp;                  // Timestamp of project creation
+        string projectId;                   // Unique identifier for the project
+        LocationInfo locationInfo;          // Location information of the project
+        EnvironmentData environmentData;    // Environmental data related to the project
+        FinancialData financialData;        // Financial data related to the project
+        ProjectDetails projectDetails;      // Additional details about the project
     }
 
-    mapping(string => Project) public projects;                 // Mapping to store projects by their ID
-    string[] public projectIds;
+    mapping(string => Project) public projects;    // Mapping to store projects by their ID
+    string[] public projectIds;                    // Array to store all project IDs            
 
     event ProjectCreated(string projectId, uint256 timestamp);  // Event to log project creation
 
     function createProject(                                     // Function to create a new project
-        string memory _projectId,
-        LocationInfo memory _locationInfo,
-        EnvironmentData memory _environmentData,
-        FinancialData memory _financialData,
-        ProjectDetails memory _projectDetails
+        string memory _projectId,                               // Unique identifier for the project
+        LocationInfo memory _locationInfo,                      // Location information for the project
+        EnvironmentData memory _environmentData,                // Environmental data for the project
+        FinancialData memory _financialData,                    // Financial data for the project
+        ProjectDetails memory _projectDetails                   // Additional details about the project
     ) public {
         require(bytes(projects[_projectId].projectId).length == 0, "Project ID already exists");    // Ensure project ID is unique
 
         Project memory newProject = Project({                   // Create a new project instance
-            timestamp: block.timestamp,
-            projectId: _projectId,
-            locationInfo: _locationInfo,
-            environmentData: _environmentData,
-            financialData: _financialData,
-            projectDetails: _projectDetails
+            timestamp: block.timestamp,                         // Current timestamp
+            projectId: _projectId,                              // Project ID
+            locationInfo: _locationInfo,                        // Location information   
+            environmentData: _environmentData,                  // Environmental data
+            financialData: _financialData,                      // Financial data        
+            projectDetails: _projectDetails                     // Additional project details   
         });
 
         projects[_projectId] = newProject;                      // Store the new project in the mapping 
@@ -80,7 +80,7 @@ contract SmartLandscapeMonitoring {         // Smart Landscape Monitoring Contra
     }
 
     function getProject(string memory _projectId) public view returns (Project memory) {        // Function to retrieve a project by its ID
-        require(bytes(projects[_projectId].projectId).length != 0, "Project does not exist");
+        require(bytes(projects[_projectId].projectId).length != 0, "Project does not exist");   // Ensure the project exists
         return projects[_projectId];
     }
 
